@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SALEMHOUSE</string>
+    <string name="title_activity_home">Salem House</string>
+    <string name="title_home">Accueil</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_recent">Annonces récentes</string>
+</resources>
