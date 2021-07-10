@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "258851748249",
+    "project_id": "salem-house",
+    "storage_bucket": "salem-house.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258851748249:android:bd4a05e4afac66f5643b08",
+        "android_client_info": {
+          "package_name": "com.example.salemhouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258851748249-l6dr6ujd65rmlvkae1eich137an95j93.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.salemhouse",
+            "certificate_hash": "49175f7248bf64c9b3cecc34cc3636973bb40e9f"
+          }
+        },
+        {
+          "client_id": "258851748249-rdcidu9f4mcaibirib88ui5i2rqfod5d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxuvPqoVGgzyo3hUsBsuH57B5LyGSi32w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258851748249-rdcidu9f4mcaibirib88ui5i2rqfod5d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
