@@ -2,6 +2,7 @@ package com.example.salemhouse;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.storage.StorageReference;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -19,10 +22,12 @@ import java.util.List;
 public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceViewHolder> {
     private final Context context;
     private final List<Annonce> annonces;
+    private final StorageReference refAnnonces;
 
-    public AnnonceAdapter(Context context, List<Annonce> annonces) {
+    public AnnonceAdapter(Context context, List<Annonce> annonces, StorageReference refAnnonces) {
         this.context = context;
         this.annonces = annonces;
+        this.refAnnonces = refAnnonces;
     }
 
     @NonNull
@@ -45,6 +50,16 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         holder.chambres.setText(nbreChambres);
         holder.surface.setText(surface);
         holder.adresse.setText(adresse);
+        refAnnonces.child(annonce.getId()).listAll().addOnCompleteListener(task -> {
+           if(task.isSuccessful() && task.getResult() != null){
+               List<StorageReference> items = task.getResult().getItems();
+               if(items.size() > 0){
+                   items.get(0).getDownloadUrl().addOnCompleteListener(uri -> {
+                       Glide.with(context).load(uri).into(holder.image);
+                   });
+               }
+           }
+        });
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context,AnnonceActivity.class);
             intent.putExtra("id",annonce.getId());

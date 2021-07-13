@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,14 @@ public class HomeFragment extends Fragment {
 
     private static final String ANNONCES = "annonces";
     private CollectionReference colAnnonces;
+    private StorageReference refAnnonces;
     private RecyclerView rvAnnonces;
 
     @Override
     public void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         colAnnonces = FirebaseFirestore.getInstance().collection(ANNONCES);
+        refAnnonces = FirebaseStorage.getInstance().getReference();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +49,7 @@ public class HomeFragment extends Fragment {
                }
                if(annonces.size() != 0){
                    rvAnnonces.setLayoutManager(new LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false));
-                   rvAnnonces.setAdapter(new AnnonceAdapter(requireActivity(),annonces));
+                   rvAnnonces.setAdapter(new AnnonceAdapter(requireActivity(),annonces,refAnnonces));
                }
            }
         });
