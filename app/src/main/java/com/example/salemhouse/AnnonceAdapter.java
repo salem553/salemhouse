@@ -1,5 +1,7 @@
 package com.example.salemhouse;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.jetbrains.annotations.NotNull;
@@ -14,9 +17,11 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceViewHolder> {
+    private final Context context;
     private final List<Annonce> annonces;
 
-    public AnnonceAdapter(List<Annonce> annonces) {
+    public AnnonceAdapter(Context context, List<Annonce> annonces) {
+        this.context = context;
         this.annonces = annonces;
     }
 
@@ -40,6 +45,11 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         holder.chambres.setText(nbreChambres);
         holder.surface.setText(surface);
         holder.adresse.setText(adresse);
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context,AnnonceActivity.class);
+            intent.putExtra("id",annonce.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override

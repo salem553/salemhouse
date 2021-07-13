@@ -4,4 +4,6 @@
     <string name="title_home">Accueil</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_recent">Annonces récentes</string>
+    <string name="title_garantie">Garantie</string>
+    <string name="action_reserver_maintenant">Réserver maintenant</string>
 </resources>

@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -33,10 +35,17 @@ public class HomeFragment extends Fragment {
         rvAnnonces = root.findViewById(R.id.rv_annonces);
         colAnnonces.get().addOnCompleteListener(task -> {
            if(task.isSuccessful() && task.getResult() != null){
-               List<Annonce> annonces = task.getResult().toObjects(Annonce.class);
+               List<Annonce> annonces = new ArrayList<>();
+               for(DocumentSnapshot snapshot : task.getResult()){
+                   Annonce annonce = snapshot.toObject(Annonce.class);
+                   if (annonce != null) {
+                       annonce.setId(snapshot.getId());
+                       annonces.add(annonce);
+                   }
+               }
                if(annonces.size() != 0){
                    rvAnnonces.setLayoutManager(new LinearLayoutManager(requireActivity(),RecyclerView.VERTICAL,false));
-                   rvAnnonces.setAdapter(new AnnonceAdapter(annonces));
+                   rvAnnonces.setAdapter(new AnnonceAdapter(requireActivity(),annonces));
                }
            }
         });
