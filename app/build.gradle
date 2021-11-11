@@ -1,13 +1,16 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.salemhouse"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
@@ -27,25 +30,34 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'com.android.volley:volley:1.2.1'
+    implementation 'com.firebaseui:firebase-ui-auth:7.2.0'
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
     implementation 'com.github.bumptech.glide:glide:4.12.0'
-    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.libraries.places:places:2.5.0'
+    implementation 'com.google.android.gms:play-services-maps:18.0.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-storage'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-    implementation platform('com.google.firebase:firebase-bom:28.2.0')
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'org.imaginativeworld.whynotimagecarousel:whynotimagecarousel:2.0.2'
+    implementation platform('com.google.firebase:firebase-bom:29.0.0')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 }
-apply plugin: 'com.google.gms.google-services'

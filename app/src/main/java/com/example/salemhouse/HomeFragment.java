@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.salemhouse.databinding.FragmentHomeBinding;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,10 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
     private static final String ANNONCES = "annonces";
     private CollectionReference colAnnonces;
     private StorageReference refAnnonces;
+    private ProgressBar progressBar;
     private RecyclerView rvAnnonces;
 
     @Override
@@ -35,10 +37,13 @@ public class HomeFragment extends Fragment {
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        rvAnnonces = root.findViewById(R.id.rv_annonces);
+        FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
+        progressBar = binding.progressBar;
+        rvAnnonces = binding.rvAnnonces;
+
         colAnnonces.get().addOnCompleteListener(task -> {
            if(task.isSuccessful() && task.getResult() != null){
+               progressBar.setVisibility(View.GONE);
                List<Annonce> annonces = new ArrayList<>();
                for(DocumentSnapshot snapshot : task.getResult()){
                    Annonce annonce = snapshot.toObject(Annonce.class);
@@ -53,7 +58,7 @@ public class HomeFragment extends Fragment {
                }
            }
         });
-        return root;
+        return binding.getRoot();
     }
 
     @Override

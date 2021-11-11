@@ -1,9 +1,18 @@
 <resources>
-    <string name="app_name">SALEMHOUSE</string>
+    <string name="app_name">SALEM HOUSE</string>
+    <string name="google_maps_key">AIzaSyBw8wYukHfTNRKGTzR1vJaJzNIi3UveZh0</string>
     <string name="title_activity_home">Salem House</string>
     <string name="title_home">Accueil</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_reservations">Réservations</string>
     <string name="title_recent">Annonces récentes</string>
     <string name="title_garantie">Garantie</string>
     <string name="action_reserver_maintenant">Réserver maintenant</string>
+    <string name="hint_nom_complet">Nom complet</string>
+    <string name="hint_telephone">Téléphone</string>
+    <string name="hint_telephone_email">Téléphone ou adresse électronqiue</string>
+    <string name="label_confirmation">Pour confirmer votre réservation, veuillez envoyer la moitié de la garantie, soit </string>
+    <string name="label_paiement_numero">au numéro</string>
+    <string name="label_paiement_adresse">à l\'adresse</string>
+    <string name="label_confirmation_paiement">Je confirme la réservaton</string>
+    <string name="message_confirmation">Voulez-vous vraiment annuler cette réservation ?</string>
 </resources>

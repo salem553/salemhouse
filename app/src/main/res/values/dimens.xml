@@ -7,4 +7,6 @@
     <dimen name="length_8">8dp</dimen>
     <dimen name="length_4">4dp</dimen>
     <dimen name="length_16">16dp</dimen>
+    <dimen name="length_120">120dp</dimen>
+    <dimen name="length_240">240dp</dimen>
 </resources>

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -54,15 +56,20 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
            if(task.isSuccessful() && task.getResult() != null){
                List<StorageReference> items = task.getResult().getItems();
                if(items.size() > 0){
-                   items.get(0).getDownloadUrl().addOnCompleteListener(uri -> {
-                       Glide.with(context).load(uri).into(holder.image);
-                   });
+                   StorageReference image = items.get(0);
+                   Log.e("REF",image.getPath());
+                   Glide.with(context).load(image).into(holder.image);
                }
            }
         });
-        holder.itemView.setOnClickListener(v -> {
+        holder.image.setOnClickListener(v -> {
             Intent intent = new Intent(context,AnnonceActivity.class);
             intent.putExtra("id",annonce.getId());
+            context.startActivity(intent);
+        });
+        holder.reserver.setOnClickListener(v -> {
+            Intent intent = new Intent(context,ReservationActivity.class);
+            intent.putExtra("annonce",new Gson().toJson(annonce));
             context.startActivity(intent);
         });
     }
@@ -79,6 +86,7 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         TextView chambres;
         TextView surface;
         TextView adresse;
+        Button reserver;
 
         public AnnonceViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -88,6 +96,7 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
             chambres = itemView.findViewById(R.id.chambres);
             surface = itemView.findViewById(R.id.surface);
             adresse = itemView.findViewById(R.id.adresse);
+            reserver = itemView.findViewById(R.id.reserver);
         }
     }
 }

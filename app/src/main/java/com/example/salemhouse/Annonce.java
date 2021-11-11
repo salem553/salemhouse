@@ -1,12 +1,15 @@
 package com.example.salemhouse;
 
+import com.google.firebase.firestore.GeoPoint;
+
 public class Annonce {
     private String id;
-    private double prix;
-    private int pieces;
-    private int chambres;
-    private int surface;
-    private String adresse;
+    double prix;
+    int pieces;
+    int chambres;
+    int surface;
+    String adresse;
+    GeoPoint localisation;
 
     public Annonce(){
     }
@@ -23,39 +26,23 @@ public class Annonce {
         return prix;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
-    }
-
     public int getPieces() {
         return pieces;
-    }
-
-    public void setPieces(int pieces) {
-        this.pieces = pieces;
     }
 
     public int getChambres() {
         return chambres;
     }
 
-    public void setChambres(int chambres) {
-        this.chambres = chambres;
-    }
-
     public int getSurface() {
         return surface;
-    }
-
-    public void setSurface(int surface) {
-        this.surface = surface;
     }
 
     public String getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public GeoPoint getLocalisation() {
+        return localisation;
     }
 }
